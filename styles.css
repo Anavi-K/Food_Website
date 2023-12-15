@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #F9B572;
+    color: white;
+    height: 65px; /* Adjust the height to make the header smaller */
+    text-align: center; /* Center the text within the header */
+    overflow: hidden; /* Ensure that child elements don't extend outside the header */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchInput,
+#aboutSearchInput {
+    padding: 6px; /* Adjust the padding to make it smaller */
+    border: none;
+    border-radius: 5px;
+    margin: 0; /* Remove margin to avoid extra space */
+}
+
+#aboutSection {
+    padding: 10px; /* Adjust the padding to make it smaller */
+    text-align: center;
+    background-color: #99B080;
+}
+
+#aboutSection h2 {
+    color: #45543c;
+    font-size: 1.5em; /* Adjust the font size to make it smaller */
+}
+
+#aboutSection p {
+    color: #FAF8ED;
+    font-size: 1em; /* Adjust the font size to make it smaller */
+}
+
+/* Add margin to create space at the beginning and end */
+#searchInput {
+    margin-right: 25px; /* Adjust the margin to create the desired space */
+}
+
+h1 {
+    font-size: 50px;
+    margin: 0 0 0 25px; /* Set left margin to 25px */
+}
+
+#searchedMealSection {
+    margin-top: 175px; /* Adjust the margin-top value to create the desired space */
+}
+
+#searchedMealSection, #randomMealSection, #searchResults{
+    margin-left:  25px;
+    font-size: 18px;
+}
