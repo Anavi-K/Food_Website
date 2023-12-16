@@ -17,8 +17,7 @@ header {
     align-items: center;
 }
 
-#searchInput,
-#aboutSearchInput {
+#searchInput{
     padding: 6px; /* Adjust the padding to make it smaller */
     border: none;
     border-radius: 5px;
@@ -52,10 +51,32 @@ h1 {
 }
 
 #searchedMealSection {
-    margin-top: 175px; /* Adjust the margin-top value to create the desired space */
+    margin-top: 75px; /* Adjust the margin-top value to create the desired space */
 }
 
 #searchedMealSection, #randomMealSection, #searchResults{
     margin-left:  25px;
     font-size: 18px;
+}
+
+h3{
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+.random-meal {
+    margin-top: 20px;
+}
+
+.random-meal-item {
+    text-align: center;
+}
+
+.random-meal-item img {
+    max-width: 25%;
+    height: auto;
+}
+
+.random-meal-item p {
+    margin-top: 10px;
 }
