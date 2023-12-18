@@ -3,20 +3,61 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchedMealsDiv = document.getElementById('sr');
     const searchTitle = document.getElementById('SearchedResults');
     const searchInput = document.getElementById('searchInput');
+    const ingredientsModal = document.getElementById('ingredientsModal');
 
-    // Function to update the searched meal div with name and image
+    // Define openIngredientsModal in the global scope
+    window.openIngredientsModal = function (mealId) {
+        ingredientsModal.innerHTML = '<p>Loading...</p>';
+        ingredientsModal.style.display = 'block';
+
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+            .then(response => response.json())
+            .then(data => {
+                const meal = data.meals[0];
+                ingredientsModal.innerHTML = `<div>
+                    <h3>${meal.strMeal}</h3>
+                    <ul>${getIngredientsList(meal)}</ul>
+                    <button id="closeModalButton">Close</button>
+                </div>`;
+
+                // Attach click event handler for the close button
+                const closeModalButton = document.getElementById('closeModalButton');
+                closeModalButton.addEventListener('click', closeIngredientsModal);
+            })
+            .catch(error => {
+                console.error('Error fetching ingredients:', error);
+                ingredientsModal.innerHTML = '<p>Error fetching ingredients. Please try again.</p>';
+            });
+    };
+
+    function closeIngredientsModal() {
+        ingredientsModal.style.display = 'none';
+    }
+
     function updateSearchedMeals(meals) {
         searchTitle.classList.remove('hidden');
         searchedMealsDiv.innerHTML = '';
         meals.forEach(meal => {
-            searchedMealsDiv.innerHTML += `<div class="searched-meal">
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-                <p>${meal.strMeal}</p>
-            </div>`;
+            const mealItem = document.createElement('div');
+            mealItem.className = 'searched-meal';
+            mealItem.innerHTML = `<img src="${meal.strMealThumb}" alt="${meal.strMeal}" onclick="openIngredientsModal('${meal.idMeal}')">
+                <p>${meal.strMeal}</p>`;
+            searchedMealsDiv.appendChild(mealItem);
         });
     }
 
-    // Function to handle search input
+    function getIngredientsList(meal) {
+        let ingredientsList = '';
+        for (let i = 1; i <= 20; i++) {
+            const ingredient = meal[`strIngredient${i}`];
+            const measure = meal[`strMeasure${i}`];
+            if (ingredient && ingredient.trim() !== '') {
+                ingredientsList += `<li>${measure} ${ingredient}</li>`;
+            }
+        }
+        return ingredientsList;
+    }
+
     function handleSearchInput() {
         const searchTerm = searchInput.value.trim();
 
@@ -42,26 +83,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Add event listener for search input
     searchInput.addEventListener('change', handleSearchInput);
 
-    // Add event listener for Enter key press
     searchInput.addEventListener('keyup', function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent the default behavior (e.g., form submission)
-            handleSearchInput(); // Manually trigger the search input handling
+            event.preventDefault();
+            handleSearchInput();
         }
     });
 
-    // Fetch random meal after everything is set up
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
             const meal = data.meals[0];
-            randomMealDiv.innerHTML = `<div class="random-meal-item">
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-                <p>${meal.strMeal}</p>
-            </div>`;
+            const randomMealItem = document.createElement('div');
+            randomMealItem.className = 'random-meal-item';
+            randomMealItem.innerHTML = `<img src="${meal.strMealThumb}" alt="${meal.strMeal}" onclick="openIngredientsModal('${meal.idMeal}')">
+                <p>${meal.strMeal}</p>`;
+            randomMealDiv.appendChild(randomMealItem);
         })
         .catch(error => console.error('Error fetching random meal:', error));
 });
