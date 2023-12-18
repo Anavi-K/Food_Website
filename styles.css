@@ -80,3 +80,37 @@ h3{
 .random-meal-item p {
     margin-top: 10px;
 }
+
+#sr {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Adjust the gap between grid items as needed */
+}
+
+.searched-meal {
+    width: 60%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+/* Adjust styles for better spacing and appearance */
+.searched-meal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.searched-meal p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+}
+
+/* Optional: Center the searched meals grid */
+.searched-meals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

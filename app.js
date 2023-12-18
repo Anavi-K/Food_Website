@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleSearchInput() {
         const searchTerm = searchInput.value.trim();
 
+        // Display loading indicator
+        searchedMealsDiv.innerHTML = '<p>Loading...</p>';
+
         // Fetch meals based on search term
         if (searchTerm !== '') {
             fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)
@@ -28,7 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const meals = data.meals;
                     updateSearchedMeals(meals);
                 })
-                .catch(error => console.error('Error fetching searched meals:', error));
+                .catch(error => {
+                    console.error('Error fetching searched meals:', error);
+                    searchedMealsDiv.innerHTML = '<p>Error fetching meals. Please try again.</p>';
+                });
         } else {
             // Clear the searched meal div if the search term is empty
             searchedMealsDiv.innerHTML = '';
@@ -37,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add event listener for search input
-    searchInput.addEventListener('input', handleSearchInput);
+    searchInput.addEventListener('change', handleSearchInput);
 
     // Add event listener for Enter key press
     searchInput.addEventListener('keyup', function (event) {
