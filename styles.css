@@ -75,6 +75,8 @@ h3{
 .random-meal-item img {
     max-width: 25%;
     height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .random-meal-item p {
@@ -99,6 +101,8 @@ h3{
     height: auto;
     border-radius: 8px;
     margin-bottom: 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .searched-meal p {
