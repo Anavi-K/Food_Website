@@ -133,3 +133,65 @@ h3{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+@media only screen and (max-width: 400px) {
+    header {
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    #searchInput {
+        margin-right: 10px;
+    }
+
+    #aboutSection {
+        padding: 5px;
+    }
+
+    #aboutSection h2 {
+        font-size: 1.2em;
+    }
+
+    #aboutSection p {
+        font-size: 0.9em;
+    }
+
+    #sr {
+        gap: 0px;
+    }
+
+    .random-meal-item img{
+        max-width: 75%;
+        height: auto;
+    }
+
+    .searched-meal img{
+        max-width:225%;
+    }
+
+    #sr {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px; /* Adjust the gap between grid items as needed */
+    }
+}
+
+@media only screen and (max-width: 500px){
+    #sr {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px; /* Adjust the gap between grid items as needed */
+    }
+
+    .random-meal-item img{
+        max-width: 60%;
+        height: auto;
+    }
+
+    .searched-meal img{
+        max-width:200%;
+    }
+}
