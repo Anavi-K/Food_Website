@@ -6,9 +6,9 @@ body {
 header {
     background-color: #F9B572;
     color: white;
-    height: 65px; /* Adjust the height to make the header smaller */
-    text-align: center; /* Center the text within the header */
-    overflow: hidden; /* Ensure that child elements don't extend outside the header */
+    height: 65px; 
+    text-align: center;
+    overflow: hidden;
 }
 
 .header-content {
@@ -18,40 +18,39 @@ header {
 }
 
 #searchInput{
-    padding: 6px; /* Adjust the padding to make it smaller */
+    padding: 6px; 
     border: none;
     border-radius: 5px;
-    margin: 0; /* Remove margin to avoid extra space */
+    margin: 0; 
 }
 
 #aboutSection {
-    padding: 10px; /* Adjust the padding to make it smaller */
+    padding: 10px; 
     text-align: center;
     background-color: #99B080;
 }
 
 #aboutSection h2 {
     color: #45543c;
-    font-size: 1.5em; /* Adjust the font size to make it smaller */
+    font-size: 1.5em; 
 }
 
 #aboutSection p {
     color: #FAF8ED;
-    font-size: 1em; /* Adjust the font size to make it smaller */
+    font-size: 1em;
 }
 
-/* Add margin to create space at the beginning and end */
 #searchInput {
-    margin-right: 25px; /* Adjust the margin to create the desired space */
+    margin-right: 25px;
 }
 
 h1 {
     font-size: 50px;
-    margin: 0 0 0 25px; /* Set left margin to 25px */
+    margin: 0 0 0 25px;
 }
 
 #searchedMealSection {
-    margin-top: 75px; /* Adjust the margin-top value to create the desired space */
+    margin-top: 75px;
 }
 
 #searchedMealSection, #randomMealSection, #searchResults{
@@ -86,7 +85,7 @@ h3{
 #sr {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px; /* Adjust the gap between grid items as needed */
+    gap: 20px;
 }
 
 .searched-meal {
@@ -95,7 +94,6 @@ h3{
     padding: 10px;
 }
 
-/* Adjust styles for better spacing and appearance */
 .searched-meal img {
     max-width: 100%;
     height: auto;
@@ -112,7 +110,6 @@ h3{
     color: #333;
 }
 
-/* Optional: Center the searched meals grid */
 .searched-meals-grid {
     display: flex;
     flex-wrap: wrap;
@@ -179,7 +176,7 @@ h3{
     #sr {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 15px; /* Adjust the gap between grid items as needed */
+        gap: 15px;
     }
 }
 
@@ -187,7 +184,7 @@ h3{
     #sr {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 15px; /* Adjust the gap between grid items as needed */
+        gap: 15px;
     }
 
     .random-meal-item img{

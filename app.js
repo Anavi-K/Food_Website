@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Get references to DOM elements
     const randomMealDiv = document.getElementById('rdm');
     const searchedMealsDiv = document.getElementById('sr');
     const searchTitle = document.getElementById('SearchedResults');
@@ -7,13 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Define openIngredientsModal in the global scope
     window.openIngredientsModal = function (mealId) {
+        // Display loading message in the modal
         ingredientsModal.innerHTML = '<p>Loading...</p>';
         ingredientsModal.style.display = 'block';
 
+        // Fetch meal details based on mealId
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
             .then(response => response.json())
             .then(data => {
+                // Extract meal data
                 const meal = data.meals[0];
+
+                // Populate modal with meal information
                 ingredientsModal.innerHTML = `<div>
                     <h3>${meal.strMeal}</h3>
                     <ul>${getIngredientsList(meal)}</ul>
@@ -25,15 +31,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 closeModalButton.addEventListener('click', closeIngredientsModal);
             })
             .catch(error => {
+                // Handle errors during the fetch
                 console.error('Error fetching ingredients:', error);
                 ingredientsModal.innerHTML = '<p>Error fetching ingredients. Please try again.</p>';
             });
     };
 
+    // Function to close the ingredients modal
     function closeIngredientsModal() {
         ingredientsModal.style.display = 'none';
     }
 
+    // Update the UI with searched meals
     function updateSearchedMeals(meals) {
         searchTitle.classList.remove('hidden');
         searchedMealsDiv.innerHTML = '';
@@ -46,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Generate an ingredients list from meal data
     function getIngredientsList(meal) {
         let ingredientsList = '';
         for (let i = 1; i <= 20; i++) {
@@ -58,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return ingredientsList;
     }
 
+    // Handle user input for meal search
     function handleSearchInput() {
         const searchTerm = searchInput.value.trim();
 
@@ -73,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     updateSearchedMeals(meals);
                 })
                 .catch(error => {
+                    // Handle errors during the fetch
                     console.error('Error fetching searched meals:', error);
                     searchedMealsDiv.innerHTML = '<p>Error fetching meals. Please try again.</p>';
                 });
@@ -83,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Event listeners for search input
     searchInput.addEventListener('change', handleSearchInput);
 
     searchInput.addEventListener('keyup', function (event) {
@@ -92,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Fetch a random meal and display it in the UI
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
